@@ -5,6 +5,8 @@ y con la accesibilidad verificada por máquina en cada build.
 
 Trae tokens, componentes CSS y exportación directa a Figma.
 
+**[Ver todos los componentes →](https://dapino.github.io/lo-justo-design-kit/)**
+
 ```bash
 npm install lo-justo-design-kit
 ```
@@ -205,7 +207,8 @@ scripts/
   construir.mjs           genera dist/ — sin dependencias
   verificar-contraste.mjs rompe el build si un par no pasa
 dist/                     generado, versionado para que instalar no requiera build
-ejemplo/index.html        demo con todos los componentes
+ejemplo/plantilla.html    fuente del demo
+docs/index.html           demo generado, autocontenido. Es lo que sirve GitHub Pages
 ```
 
 **Cero dependencias.** Ni de producción ni de desarrollo. Un kit de diseño que necesita medio
@@ -215,7 +218,8 @@ ecosistema para generar un JSON de colores es un kit que nadie va a poder correr
 
 ## Contribuir
 
-1. Edita `src/tokens.css` o `src/componentes/*.css`. **Nunca `dist/`.**
+1. Edita `src/tokens.css`, `src/componentes/*.css` o `ejemplo/plantilla.html`.
+   **Nunca `dist/` ni `docs/`**: se generan.
 2. Si agregas un color, agrégale su par al array `PARES` de `verificar-contraste.mjs`.
 3. `npm run construir`.
 4. Si el contraste falla, el color está mal, no el script.

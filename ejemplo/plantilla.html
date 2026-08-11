@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>lo-justo-design-kit — componentes</title>
-<link rel="stylesheet" href="../dist/lo-justo.css">
+<!-- CSS-INCRUSTADO -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Manrope:wght@300;600;700&display=swap" rel="stylesheet">
@@ -240,25 +240,25 @@
   </button>
 </nav>
 
-<script type="module">
-  // La paleta se dibuja desde los tokens, no desde una lista escrita a mano:
-  // si un token cambia, el muestrario cambia solo.
-  import tokens from '../dist/tokens.mjs';
+<script>
+  // La paleta se genera en el build, no en el navegador. Importar un módulo ES
+  // desde file:// está bloqueado por CORS en Chrome y Safari, así que la lista
+  // llega ya resuelta desde tokens.css. Sigue sin escribirse a mano.
+  var PALETA = /* PALETA-INCRUSTADA */ [];
 
-  const paleta = document.getElementById('paleta');
-  for (const [nombre, valor] of Object.entries(tokens)) {
-    if (!/^#[0-9A-Fa-f]{6}$/.test(valor)) continue;
-    const ficha = document.createElement('div');
+  var paleta = document.getElementById('paleta');
+  PALETA.forEach(function (par) {
+    var ficha = document.createElement('div');
     ficha.innerHTML =
-      `<div class="ficha__color" style="background:${valor}"></div>` +
-      `<p class="ficha__n">${nombre}<br>${valor}</p>`;
+      '<div class="ficha__color" style="background:' + par[1] + '"></div>' +
+      '<p class="ficha__n">' + par[0] + '<br>' + par[1] + '</p>';
     paleta.appendChild(ficha);
-  }
+  });
 
-  // Control de tamaño de texto: demuestra que la escala en rem sí responde
-  const escala = document.getElementById('escala');
-  const valor = document.getElementById('valor');
-  escala.addEventListener('input', () => {
+  // Control de tamaño: demuestra que la escala en rem sí responde
+  var escala = document.getElementById('escala');
+  var valor = document.getElementById('valor');
+  escala.addEventListener('input', function () {
     document.documentElement.style.fontSize = (16 * escala.value / 100) + 'px';
     valor.textContent = escala.value + '%';
   });

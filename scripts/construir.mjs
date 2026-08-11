@@ -232,7 +232,46 @@ const min = (css) => css
 writeFileSync(join(DIST, 'lo-justo.min.css'), min(cssTokens + componentes) + '\n');
 
 // ---------------------------------------------------------------------------
-// 5. Reporte
+// 5. El demo, autocontenido
+//
+// Con el CSS enlazado, el demo llegaba sin estilos al abrirlo con doble clic:
+// según el navegador y desde dónde se abra, un <link> relativo bajo file://
+// no siempre resuelve, y los módulos ES están bloqueados por CORS.
+//
+// La solución es la misma que se usó en el prototipo: un solo archivo, con
+// todo adentro. Abre con doble clic, se manda por correo, y sirve igual desde
+// GitHub Pages.
+// ---------------------------------------------------------------------------
+
+const plantilla = readFileSync(join(RAIZ, 'ejemplo', 'plantilla.html'), 'utf8');
+
+const paleta = tokens
+  .filter((t) => t.ambito === ':root')
+  .map((t) => [t.nombre.replace(/^--bc-/, ''), resolver(t.valor)])
+  .filter(([, v]) => /^#[0-9A-Fa-f]{6}$/.test(v));
+
+const demo = plantilla
+  .replace('<!-- CSS-INCRUSTADO -->',
+    '<style>\n' + cssTokens + '\n' + componentes + '\n</style>')
+  .replace('/* PALETA-INCRUSTADA */ []', JSON.stringify(paleta))
+  .replace('<!DOCTYPE html>',
+    '<!DOCTYPE html>\n<!-- ARCHIVO GENERADO por scripts/construir.mjs\n' +
+    '     Editar ejemplo/plantilla.html y volver a correr: npm run construir -->');
+
+mkdirSync(join(RAIZ, 'docs'), { recursive: true });
+writeFileSync(join(RAIZ, 'docs', 'index.html'), demo);
+// .nojekyll para que GitHub Pages no se coma nada
+writeFileSync(join(RAIZ, 'docs', '.nojekyll'), '');
+
+if (demo.includes('CSS-INCRUSTADO') || demo.includes('PALETA-INCRUSTADA')) {
+  throw new Error('La plantilla del demo no se sustituyó bien');
+}
+if (/href="\.\.\/dist|src="\.\.\/dist/.test(demo)) {
+  throw new Error('El demo quedó con una referencia a dist/');
+}
+
+// ---------------------------------------------------------------------------
+// 6. Reporte
 // ---------------------------------------------------------------------------
 
 const cuenta = Object.fromEntries(
@@ -250,3 +289,4 @@ for (const [k, n] of Object.entries(proc)) console.log(`  ${k.padEnd(14)} ${n}`)
 
 console.log('\ndist/ escrito:');
 for (const f of readdirSync(DIST).sort()) console.log('  ' + f);
+console.log(`\ndocs/index.html · demo autocontenido · ${(demo.length / 1024).toFixed(1)} KB · ${paleta.length} colores`);
