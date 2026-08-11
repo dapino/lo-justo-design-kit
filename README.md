@@ -3,7 +3,7 @@
 Sistema de diseño para **banca de baja densidad**: menos cosas en pantalla, más grandes,
 y con la accesibilidad verificada por máquina en cada build.
 
-Trae tokens, componentes CSS y exportación directa a Figma.
+Trae **componentes React**, tokens y exportación directa a Figma.
 
 **[Ver todos los componentes →](https://dapino.github.io/lo-justo-design-kit/)**
 
@@ -49,6 +49,66 @@ encontraron calculando, no mirando.
 
 ## Uso
 
+### React — es lo que quieres si estás en Figma Make, Vite o Next
+
+```jsx
+import { Pantalla, Saludo, Fallo, Certeza, Boton, Nav } from 'lo-justo-design-kit';
+
+<Pantalla>
+  <Saludo>Hola de nuevo</Saludo>
+
+  <Fallo
+    cuando="Jueves, 7:13 p.m."
+    quePaso="Se cayó la conexión justo cuando ibas a confirmar."
+    deQuienFue={<><strong>Nuestro.</strong> El corte fue del lado del banco.</>}
+    queSigue={<>La transferencia <strong>no se hizo</strong>. Nadie recibió nada.</>}
+  />
+
+  <Certeza salio={false} titulo="Tu plata sigue completa" monto={300000} />
+
+  <Boton variante="primario">Volver a intentar</Boton>
+
+  <Nav activo="inicio" destinos={[
+    { id: 'inicio', etiqueta: 'Inicio' },
+    { id: 'hice',   etiqueta: 'Lo que hice' },
+    { id: 'seg',    etiqueta: 'Seguridad' },
+  ]} />
+</Pantalla>
+```
+
+**No hay que importar ningún CSS.** Los estilos se inyectan solos al importar cualquier
+componente. Es justo donde se rompen estos kits, así que aquí no se puede olvidar.
+
+React 18 o 19, como peerDependency. Probado con Vite 5 y React 18.
+
+#### Los componentes te avisan cuando rompes una regla
+
+En desarrollo, la consola te dice qué te saltaste:
+
+```
+[lo-justo] Agente sin `cuando`. Cada mensaje del agente es una entrada del registro.
+[lo-justo] Fallo sin `deQuienFue`. Si fue del banco, hay que decirlo.
+[lo-justo] Boton sin texto. Todo botón lleva texto: ningún ícono solo.
+[lo-justo] Nav con más de 3 destinos. El modo simplificado usa 3.
+[lo-justo] Espera sin `que`. Nada de giros infinitos.
+[lo-justo] Limites sin `titulo`. La distinción no puede depender solo del color.
+```
+
+No es decoración: son las reglas del sistema, hechas código. `Fallo` no deja construir un
+error sin causa, responsable y siguiente paso, porque los tres son props obligatorias.
+
+#### Dinero
+
+```js
+import { formatearPesos } from 'lo-justo-design-kit';
+
+formatearPesos(300000);    // "$ 300.000"
+formatearPesos(16531.59);  // "$ 16.531,59"
+```
+
+Formato exacto de la app real, con los centavos en tamaño reducido cuando se renderiza
+con `<Cifra>`. Nunca abrevia: no existe `$300K` en este sistema.
+
 ### CSS, todo junto
 
 ```html
@@ -68,10 +128,10 @@ Dos clases, y son distintas:
 @import "lo-justo-design-kit/tokens.css";
 ```
 
-### Desde JavaScript
+### Solo los tokens, desde JavaScript
 
 ```js
-import tokens from 'lo-justo-design-kit';
+import tokens from 'lo-justo-design-kit/tokens';
 
 tokens.amarillo;    // "#FDDA24"
 tokens.carbon;      // "#2C2A29"
@@ -115,6 +175,17 @@ Style Dictionary o cualquier herramienta que lo consuma.
 
 Procedencia: **20 extraídos del sitio en vivo**, 3 de SVG de marca, 22 propuestos con su
 justificación escrita, 39 derivados.
+
+### Componentes React · 33
+
+`Pantalla` `Saludo` `Antetitulo` `Nota` `Etiqueta` `Boton` `Volver` `Tarjeta` `Accion`
+`Cifra` `Agente` `AgenteTexto` `Fallo` `Certeza` `Registro` `EntradaRegistro` `Dia`
+`Campo` `Casilla` `Resumen` `FilaResumen` `Comprobante` `Nav` `Encabezado` `Migaja`
+`Sello` `Palabra` `AlertaFraude` `Limites` `Espera` `ClaveDinamica` `Arcos`
+· más `formatearPesos`
+
+Con tipos de TypeScript. El build falla si un componente queda sin tipar o un tipo
+apunta a un componente que no existe.
 
 ### Componentes · 13 módulos CSS
 

@@ -203,6 +203,13 @@
   font-size: var(--bc-txt-cuerpo);
   line-height: var(--bc-alto-linea);
   color: var(--bc-carbon);
+  /* El fondo lo pone el propio componente raíz. Sin esto, montado dentro de
+     una página de fondo oscuro —el caso de casi cualquier sandbox— el texto
+     carbón desaparecía. Un sistema que promete 14.28:1 no puede depender de
+     que quien lo use tenga el fondo correcto. */
+  background: var(--bc-blanco);
+  /* Evita que el navegador fuerce controles oscuros sobre superficies claras */
+  color-scheme: light;
   -webkit-text-size-adjust: 100%;
 }
 

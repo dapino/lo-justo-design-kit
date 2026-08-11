@@ -3,6 +3,41 @@
 Formato: [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/).
 Versionado semántico.
 
+## [0.2.0] — 2026-08-11
+
+Capa de React, para que el kit sirva en Figma Make, Vite o cualquier proyecto moderno.
+
+### Agregado
+
+- **33 componentes React**, escritos con `createElement` en vez de JSX para que el
+  paquete siga sin ninguna dependencia de compilación. React entra como peerDependency.
+- **Los estilos se inyectan solos** al importar cualquier componente: el CSS viaja como
+  cadena dentro del JS. Es lo único que garantiza que funcione en un sandbox donde no
+  se controla cómo se resuelven los imports de CSS.
+- **Avisos en desarrollo cuando se rompe una regla del sistema**: `Agente` sin hora,
+  `Fallo` sin responsable, `Boton` sin texto, `Nav` con más de 3 destinos, `Espera` sin
+  decir qué espera, `Limites` sin título. Las reglas dejan de ser un README y pasan a
+  ser código.
+- `formatearPesos()` con el formato exacto de la app: `$ 300.000`, `$ 16.531,59`.
+- Tipos de TypeScript completos. El build falla si el código y los tipos no coinciden.
+
+### Cambiado
+
+- **La raíz del paquete ahora exporta los componentes**, no los tokens. Los tokens
+  siguen disponibles en `lo-justo-design-kit/tokens`. Es un cambio incompatible con 0.1.0.
+- **`.lj` pone su propio fondo blanco.** Montado dentro de una página de fondo oscuro
+  —el caso de casi cualquier sandbox— el texto carbón desaparecía. Un sistema que
+  promete 14.28:1 no puede depender de que el anfitrión tenga el fondo correcto.
+- Los avisos de desarrollo ya no dependen de que exista `process`. En el navegador no
+  existe, así que estaban apagados justo donde más sirven.
+
+### Verificado
+
+- Compila con **Vite 5 + React 18** y se renderiza correctamente, incluso sobre fondo
+  oscuro. Probado instalando el tarball en un proyecto limpio, no con un enlace local.
+
+---
+
 ## [0.1.0] — 2026-08-10
 
 Primera versión. Extraída del prototipo del modo "Lo justo".

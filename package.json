@@ -1,11 +1,14 @@
 {
   "name": "lo-justo-design-kit",
-  "version": "0.1.0",
-  "description": "Sistema de diseño para banca de baja densidad: tokens, componentes CSS y exportación a Figma. Con verificación de contraste que rompe el build. Ejercicio de diseño, no afiliado a ninguna entidad.",
+  "version": "0.2.0",
+  "description": "Sistema de diseño para banca de baja densidad: componentes React, tokens y exportación a Figma. Con verificación de contraste que rompe el build. Ejercicio de diseño, no afiliado a ninguna entidad.",
   "keywords": [
     "design-system",
     "design-tokens",
+    "react",
+    "react-components",
     "figma",
+    "figma-make",
     "tokens-studio",
     "accessibility",
     "wcag",
@@ -28,11 +31,16 @@
   "sideEffects": [
     "*.css"
   ],
-  "main": "./dist/tokens.cjs",
-  "module": "./dist/tokens.mjs",
-  "types": "./dist/tokens.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./tokens": {
       "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.mjs",
       "require": "./dist/tokens.cjs"
@@ -65,5 +73,13 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    }
   }
 }

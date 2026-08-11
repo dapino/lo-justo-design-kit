@@ -1,8 +1,8 @@
-node_modules/
-.DS_Store
 *.log
-npm-debug.log*
-.npmrc
 *.tgz
+.DS_Store
 .idea/
+.npmrc
 .vscode/
+node_modules/
+npm-debug.log*

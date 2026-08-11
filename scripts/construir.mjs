@@ -232,7 +232,76 @@ const min = (css) => css
 writeFileSync(join(DIST, 'lo-justo.min.css'), min(cssTokens + componentes) + '\n');
 
 // ---------------------------------------------------------------------------
-// 5. El demo, autocontenido
+// 5. Capa de React
+//
+// Figma Make y cualquier proyecto con Vite piden componentes React, no CSS
+// suelto. Los componentes se escriben con createElement en src/react/ para
+// que el paquete siga sin necesitar ninguna dependencia de compilación.
+//
+// Los estilos se inyectan solos al importar cualquier componente: el CSS viaja
+// como cadena dentro del JS. Es lo único que garantiza que funcione en un
+// sandbox donde no controlamos cómo se resuelven los imports de CSS.
+// ---------------------------------------------------------------------------
+
+const cssCompleto = cssTokens + '\n' + componentes;
+
+writeFileSync(join(DIST, 'estilos.mjs'),
+  '// Generado por scripts/construir.mjs — no editar a mano.\n' +
+  'const css = ' + JSON.stringify(cssCompleto) + ';\n\n' +
+  'let puesto = false;\n\n' +
+  '/** Inyecta el CSS del kit una sola vez. La llaman los componentes solos. */\n' +
+  'export function ponerEstilos() {\n' +
+  '  if (puesto || typeof document === \'undefined\') return;\n' +
+  '  puesto = true;\n' +
+  '  if (document.getElementById(\'lo-justo-design-kit\')) return;\n' +
+  '  const etiqueta = document.createElement(\'style\');\n' +
+  '  etiqueta.id = \'lo-justo-design-kit\';\n' +
+  '  etiqueta.textContent = css;\n' +
+  '  document.head.appendChild(etiqueta);\n' +
+  '}\n\n' +
+  'export { css };\n');
+
+// Los componentes se copian tal cual: ya están en ESM y sin JSX.
+const react = readFileSync(join(SRC, 'react', 'componentes.mjs'), 'utf8');
+writeFileSync(join(DIST, 'react.mjs'),
+  '// Copiado de src/react/componentes.mjs por scripts/construir.mjs.\n' +
+  '// Editar el original y volver a correr: npm run construir\n' + react);
+
+// Punto de entrada de la raíz: componentes + tokens + utilidades
+writeFileSync(join(DIST, 'index.mjs'),
+  '// Generado por scripts/construir.mjs — no editar a mano.\n' +
+  "export * from './react.mjs';\n" +
+  "export { tokens } from './tokens.mjs';\n" +
+  "export { ponerEstilos, css } from './estilos.mjs';\n");
+
+// Tipos de la capa de React
+const tipos = readFileSync(join(SRC, 'react', 'tipos.d.ts'), 'utf8');
+writeFileSync(join(DIST, 'index.d.ts'),
+  '// Copiado de src/react/tipos.d.ts por scripts/construir.mjs.\n' + tipos);
+
+if (!react.includes('export function Boton')) {
+  throw new Error('La capa de React no exporta los componentes esperados');
+}
+
+// Todo lo que exporta el runtime tiene que estar tipado, y al revés.
+// index.mjs reexporta ponerEstilos desde estilos.mjs, así que cuenta también
+const exportadosJs = (react.match(/^export function (\w+)/gm) || [])
+  .map((l) => l.replace('export function ', ''))
+  .concat(['ponerEstilos']);
+const exportadosTs = (tipos.match(/^export declare function (\w+)/gm) || [])
+  .map((l) => l.replace('export declare function ', ''));
+const sinTipo = exportadosJs.filter((n) => !exportadosTs.includes(n));
+const sinCodigo = exportadosTs.filter((n) => !exportadosJs.includes(n));
+if (sinTipo.length || sinCodigo.length) {
+  throw new Error(
+    'Los tipos y el código no coinciden.' +
+    (sinTipo.length ? ' Sin tipo: ' + sinTipo.join(', ') + '.' : '') +
+    (sinCodigo.length ? ' Tipados pero inexistentes: ' + sinCodigo.join(', ') + '.' : '')
+  );
+}
+
+// ---------------------------------------------------------------------------
+// 6. El demo, autocontenido
 //
 // Con el CSS enlazado, el demo llegaba sin estilos al abrirlo con doble clic:
 // según el navegador y desde dónde se abra, un <link> relativo bajo file://
@@ -271,7 +340,7 @@ if (/href="\.\.\/dist|src="\.\.\/dist/.test(demo)) {
 }
 
 // ---------------------------------------------------------------------------
-// 6. Reporte
+// 7. Reporte
 // ---------------------------------------------------------------------------
 
 const cuenta = Object.fromEntries(
@@ -290,3 +359,5 @@ for (const [k, n] of Object.entries(proc)) console.log(`  ${k.padEnd(14)} ${n}`)
 console.log('\ndist/ escrito:');
 for (const f of readdirSync(DIST).sort()) console.log('  ' + f);
 console.log(`\ndocs/index.html · demo autocontenido · ${(demo.length / 1024).toFixed(1)} KB · ${paleta.length} colores`);
+const cuantosComponentes = (react.match(/^export function /gm) || []).length;
+console.log(`capa React · ${cuantosComponentes} componentes · estilos incrustados como cadena`);
