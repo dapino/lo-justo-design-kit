@@ -1,0 +1,925 @@
+/* ===========================================================================
+   lo-justo · componentes
+   Generado por scripts/construir.mjs — no editar a mano.
+   Editar src/ y volver a correr: npm run construir
+   =========================================================================== */
+
+/* ============================================================
+   Base — lo mínimo para que los componentes se comporten igual
+   en cualquier página. No es un reset completo a propósito.
+   ============================================================ */
+
+.lj {
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-cuerpo);
+  line-height: var(--bc-alto-linea);
+  color: var(--bc-carbon);
+  -webkit-text-size-adjust: 100%;
+}
+
+.lj *,
+.lj *::before,
+.lj *::after { box-sizing: border-box; }
+
+/* Escala en rem: sin esto, subir el texto del sistema al 200% no hace nada.
+   Los px equivalentes van al lado para poder leer la escala de un vistazo. */
+.lj {
+  --bc-txt-h1:     2.25rem;   /* 36px */
+  --bc-txt-h2:     1.75rem;   /* 28px */
+  --bc-txt-h3:     1.375rem;  /* 22px */
+  --bc-txt-ui:     1.25rem;   /* 20px */
+  --bc-txt-cuerpo: 1.125rem;  /* 18px — mínimo absoluto del modo */
+  --bc-txt-nota:   1.125rem;  /* 18px */
+
+  --bc-cifra-1:    2.5rem;    /* 40px */
+  --bc-cifra-2:    2rem;      /* 32px — mínimo para dinero */
+  --bc-cifra-3:    1.375rem;  /* 22px */
+}
+
+/* Foco visible en todo lo interactivo, también sobre amarillo.
+   Doble anillo: carbón sobre halo blanco. */
+.lj :focus-visible {
+  outline: var(--bc-foco-ancho) solid var(--bc-foco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 calc(var(--bc-foco-ancho) + 2px) var(--bc-foco-halo);
+}
+
+/* Ninguna palabra larga desborda su caja al crecer el texto */
+.lj h1, .lj h2, .lj h3, .lj p, .lj li,
+.lj dd, .lj dt, .lj button, .lj label { overflow-wrap: break-word; }
+
+.lj h1, .lj h2, .lj h3 {
+  font-family: var(--bc-font-titulo);
+  line-height: var(--bc-alto-linea-tit);
+  margin: 0 0 var(--bc-esp-3);
+}
+.lj h1 { font-size: min(var(--bc-txt-h2), 40px); font-weight: var(--bc-peso-bold); }
+.lj h2 { font-size: min(var(--bc-txt-h3), 34px); font-weight: var(--bc-peso-bold); }
+.lj h3 { font-size: var(--bc-txt-ui); font-weight: var(--bc-peso-semi); }
+.lj p  { margin: 0 0 var(--bc-esp-3); }
+
+/* Saludo — el h1 en peso light del login real */
+.lj-saludo {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-light);
+  font-size: min(var(--bc-txt-h1), 46px);
+  line-height: var(--bc-alto-linea-tit);
+  margin: 0 0 var(--bc-esp-2);
+}
+
+.lj-antetitulo {
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--bc-gris-texto-2);
+  margin: 0 0 var(--bc-esp-2);
+}
+
+.lj-nota {
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+
+.lj-etiqueta {
+  font-size: var(--bc-txt-cuerpo);
+  color: var(--bc-gris-texto);
+  margin: 0 0 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lj *, .lj *::before, .lj *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
+
+/* ============================================================
+   Botones — componentes 1, 2 y 3 de COMPONENTES.md
+
+   Regla: un solo botón amarillo por pantalla. El amarillo señala
+   LA acción, no UNA acción. Y sobre amarillo siempre carbón:
+   blanco sobre #FDDA24 da 1.38:1 y está prohibido.
+   ============================================================ */
+
+.lj-boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--bc-tap-comodo);   /* 56px, crece si crece el texto */
+  padding: 14px var(--bc-esp-5);
+  border: 2px solid transparent;
+  border-radius: var(--bc-radio-pill);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  font-weight: var(--bc-peso-semi);
+  text-align: center;
+  cursor: pointer;
+  margin: 0 0 10px;
+  transition: background-color var(--bc-mov-rapido) linear;
+}
+
+.lj-boton--primario {
+  background: var(--bc-amarillo);
+  color: var(--bc-carbon);            /* nunca blanco */
+}
+.lj-boton--primario:active { background: var(--bc-amarillo-presionado); }
+
+.lj-boton--secundario {
+  background: transparent;
+  border-color: var(--bc-carbon);
+  color: var(--bc-carbon);
+}
+.lj-boton--secundario:active { background: var(--bc-gris-fondo); }
+
+.lj-boton--texto {
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  color: var(--bc-carbon);
+}
+
+.lj-boton[disabled],
+.lj-boton[aria-disabled="true"] {
+  background: var(--bc-gris-deshab);
+  border-color: transparent;
+  color: var(--bc-gris-deshab-2);
+  cursor: not-allowed;
+}
+
+/* Cargando: el texto se mantiene, nunca se vacía el botón */
+.lj-boton[data-cargando]::after {
+  content: "";
+  width: 20px; height: 20px;
+  border: 3px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: lj-girar 700ms linear infinite;
+}
+@keyframes lj-girar { to { transform: rotate(360deg); } }
+
+/* Botón de volver — toda pantalla dice cómo salir */
+.lj-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--bc-tap-comodo);
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-carbon);
+}
+
+/* ============================================================
+   Tarjetas — componentes 4 y 5 de COMPONENTES.md
+
+   La tarjeta de acción reemplaza la cuadrícula de íconos de la app
+   actual: una por fila, nunca en cuadrícula, máximo tres por pantalla.
+   ============================================================ */
+
+.lj-tarjeta {
+  background: var(--bc-superficie);
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-card);
+  padding: var(--bc-esp-3) var(--bc-esp-4);
+  margin: 0 0 10px;
+}
+
+/* Destacada: borde amarillo de 2px.
+   Ojo — 1.38:1 contra blanco. Es refuerzo redundante, nunca puede ser
+   lo único que distinga la tarjeta. Siempre acompañar con jerarquía. */
+.lj-tarjeta--destacada { border: 2px solid var(--bc-amarillo); }
+
+/* Tarjeta de saldo: fondo carbón, texto blanco, 14.28:1 */
+.lj-tarjeta--saldo {
+  background: var(--bc-carbon);
+  border-color: var(--bc-carbon);
+  color: var(--bc-blanco);
+  padding: var(--bc-esp-4);
+}
+.lj-tarjeta--saldo .lj-etiqueta,
+.lj-tarjeta--saldo .lj-nota { color: var(--bc-blanco); }
+
+/* ---------- Tarjeta de acción ---------- */
+.lj-accion {
+  display: flex;
+  align-items: center;
+  gap: var(--bc-esp-4);
+  width: 100%;
+  min-height: 72px;
+  padding: var(--bc-esp-4);
+  margin: 0 0 10px;
+  background: var(--bc-superficie);
+  /* El borde identifica un control: necesita 3:1. --bc-gris-borde da
+     1.40:1 y las tarjetas quedaban invisibles con poca visión. */
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: var(--bc-radio-card);
+  text-align: left;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-carbon);
+  cursor: pointer;
+}
+.lj-accion:active { background: var(--bc-gris-fondo); }
+.lj-accion__icono  { width: 28px; height: 28px; flex: none; }
+.lj-accion__flecha { width: 20px; height: 20px; margin-left: auto; flex: none; }
+
+/* Fila secundaria: para lo que acompaña sin competir */
+.lj-fila {
+  padding: var(--bc-esp-3) 0 var(--bc-esp-4);
+  border-bottom: 1px solid var(--bc-gris-borde);
+  margin: 0 0 var(--bc-esp-4);
+}
+.lj-fila__linea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+}
+.lj-fila .lj-etiqueta { margin: 0; }
+.lj-fila .lj-nota { margin: 4px 0 0; }
+
+/* ============================================================
+   Formato de dinero — componente 14
+
+   Formato exacto de la app: "$ 300.000". Punto de miles, coma para
+   decimales, espacio después del peso, centavos en tamaño reducido.
+   NUNCA abreviado: "$150.000", jamás "$150K".
+
+   Mínimo 32px. El techo con min() evita que al 200% se salga de la
+   pantalla: lo que ya era grande no necesita doblar.
+   ============================================================ */
+
+.lj-cifra {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-1), 52px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.lj-cifra--media { font-size: min(var(--bc-cifra-2), 44px); }
+.lj-cifra--chica { font-size: min(var(--bc-cifra-3), 32px); }
+
+/* Centavos a tamaño reducido, como en la app real */
+.lj-cifra__centavos { font-size: .6em; }
+
+/* ---------- Resumen de filas etiqueta/valor ---------- */
+.lj-resumen {
+  border-top: 1px solid var(--bc-gris-borde);
+  margin: 0 0 var(--bc-esp-5);
+}
+.lj-resumen--pegado { margin-bottom: 0; }
+.lj-resumen__fila {
+  display: flex;
+  flex-wrap: wrap;              /* se parte en dos líneas antes que desbordar */
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-4);
+  padding: var(--bc-esp-4) 0;
+  border-bottom: 1px solid var(--bc-gris-borde);
+}
+.lj-resumen__et { color: var(--bc-gris-texto-2); margin: 0; }
+.lj-resumen__va { font-weight: var(--bc-peso-semi); margin: 0; }
+.lj-resumen__va--cifra {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-2), 42px);
+}
+.lj-resumen__sec {
+  display: block;
+  font-weight: var(--bc-peso-regular);
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+/* ---------- Comparar dos cifras ---------- */
+.lj-comparar { margin: 0 0 var(--bc-esp-4); }
+.lj-comparar__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+  padding: var(--bc-esp-3) 0;
+  border-bottom: 1px solid var(--bc-gris-borde);
+}
+.lj-comparar__fila--tope { border-bottom: 3px solid var(--bc-amarillo); }
+.lj-comparar__fila .lj-etiqueta { margin: 0; }
+
+/* ============================================================
+   El agente — componente 9, el central
+
+   No es una burbuja de chat ni un asistente al que se va a buscar.
+   Es un bloque de ancho completo que aparece dentro del flujo,
+   donde la persona ya está.
+
+   Regla de escritura, no de estilo: el agente habla en pasado, en
+   primera persona, sobre cosas que ya hizo. Si una frase se puede
+   reemplazar por "¿en qué te puedo ayudar?", está mal escrita.
+
+   Y nunca envía ni escribe primero. Prepara y espera.
+   ============================================================ */
+
+.lj-agente {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: var(--bc-esp-3);
+  align-items: start;
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border-radius: var(--bc-radio-card);
+  background: var(--bc-superficie-alt);
+}
+
+/* Anticipa — antes de una acción de riesgo. Fondo neutro. */
+.lj-agente--anticipa { background: var(--bc-superficie-alt); }
+
+/* Explica el fallo — el más importante.
+   Orden obligatorio: qué pasó, de quién fue, qué sigue.
+   Sin rojo: un fallo del banco no es una alarma para la persona. */
+.lj-agente--explica { background: var(--bc-alerta-fondo); }
+
+/* Retoma y confirma */
+.lj-agente--exito { background: var(--bc-exito-fondo); }
+
+.lj-agente__marca {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--bc-amarillo);
+  display: grid;
+  place-items: center;
+}
+.lj-agente__marca svg { width: 24px; height: 24px; }
+
+.lj-agente__texto { margin: 0; font-size: var(--bc-txt-cuerpo); }
+.lj-agente__texto + .lj-agente__texto { margin-top: var(--bc-esp-3); }
+.lj-agente__texto strong { font-weight: var(--bc-peso-bold); }
+
+/* ---------- La bitácora ----------
+   Cada cosa que dice el agente termina en una entrada auditable:
+   cuándo lo hizo y si movió plata o no. Es lo que separa un agente
+   de un chatbot — un chatbot no tiene registro de acciones autónomas
+   porque no toma ninguna. */
+.lj-agente__bitacora {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 2px;
+  align-items: baseline;
+  margin: var(--bc-esp-3) 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--bc-gris-borde);
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+.lj-agente__cuando { font-weight: var(--bc-peso-bold); color: var(--bc-carbon); }
+
+/* ---------- Registro "Lo que hice por ti" ---------- */
+.lj-registro { list-style: none; margin: 0; padding: 0; }
+.lj-registro > li {
+  padding: var(--bc-esp-4) 0;
+  border-bottom: 1px solid var(--bc-gris-borde);
+}
+.lj-registro > li:last-child { border-bottom: 0; }
+.lj-registro__hora {
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-bold);
+  color: var(--bc-gris-texto-2);
+  margin: 0 0 6px;
+}
+.lj-registro__que { margin: 0 0 8px; }
+
+.lj-dia {
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-bold);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--bc-gris-texto-2);
+  margin: var(--bc-esp-5) 0 0;
+}
+
+/* Marbete: dice con texto si movió plata. Nunca solo con color. */
+.lj-marbete {
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-chip);
+  background: var(--bc-gris-fondo);
+  color: var(--bc-gris-texto-2);
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-semi);
+}
+.lj-marbete--plata { border-color: var(--bc-carbon); color: var(--bc-carbon); }
+
+/* ============================================================
+   El fallo en tres partes
+
+   Ningún error sin causa, responsable y siguiente paso. Siempre en
+   ese orden y siempre con las mismas etiquetas.
+
+   Que sea repetitivo es la gracia: se aprende dónde mirar. El hallazgo
+   que originó todo el sistema es una persona que nunca supo qué había
+   pasado. Un espacio fijo rotulado "De quién fue" garantiza que
+   siempre lo encuentre.
+   ============================================================ */
+
+.lj-tres-partes { margin: 0; }
+.lj-tres-partes dt {
+  margin: 0 0 2px;
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-bold);
+  color: var(--bc-gris-texto-2);
+}
+.lj-tres-partes dd {
+  margin: 0 0 var(--bc-esp-3);
+  font-size: var(--bc-txt-cuerpo);
+}
+.lj-tres-partes dd:last-of-type { margin-bottom: 0; }
+
+/* Aviso neutro — para lo que no es un fallo del banco.
+   Sin rojo, sin alarma. "Ese no es. Te quedan dos intentos." */
+.lj-aviso {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--bc-esp-3);
+  align-items: start;
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border-radius: var(--bc-radio-card);
+  background: var(--bc-gris-fondo-2);
+}
+.lj-aviso--exito { background: var(--bc-exito-fondo); }
+.lj-aviso svg { width: 24px; height: 24px; }
+.lj-aviso p { margin: 0; }
+.lj-aviso p + p { margin-top: 6px; }
+
+/* Salidas — nunca un callejón sin salida */
+.lj-salidas {
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-card);
+}
+.lj-salidas__t { font-weight: var(--bc-peso-bold); margin: 0 0 var(--bc-esp-3); }
+.lj-lista-num { margin: 0; padding-left: 22px; }
+.lj-lista-num li { margin: 0 0 var(--bc-esp-3); }
+.lj-lista-num li:last-child { margin-bottom: 0; }
+
+.lj-lista { list-style: none; margin: 0 0 var(--bc-esp-4); padding: 0; }
+.lj-lista li {
+  padding: var(--bc-esp-3) 0 var(--bc-esp-3) var(--bc-esp-4);
+  border-left: 4px solid var(--bc-gris-borde);
+  margin-bottom: 6px;
+}
+
+/* ---------- Certeza sobre el dinero ----------
+   Cuando algo se cae a mitad de una transferencia, lo único que
+   importa es decir con certeza si la plata se movió o no.
+   Nunca "estamos verificando". */
+.lj-certeza {
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border: 2px solid var(--bc-carbon);
+  border-radius: var(--bc-radio-card);
+}
+.lj-certeza--no-salio { background: var(--bc-exito-fondo); }
+.lj-certeza--si-salio { background: var(--bc-gris-fondo-2); }
+.lj-certeza__t { font-weight: var(--bc-peso-bold); margin: 0 0 4px; }
+.lj-certeza__cifra {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-1), 52px);
+  line-height: 1.1;
+  margin: 0 0 6px;
+}
+
+/* ============================================================
+   Campo de entrada — componente 7
+
+   El sitio real usa underline con label flotante. Aquí se cambia a
+   caja con label fijo arriba: el label flotante desaparece al escribir
+   y obliga a recordar qué se estaba llenando.
+
+   La ayuda de formato va ANTES de escribir, no después de fallar.
+   ============================================================ */
+
+.lj-campo { margin: 0 0 var(--bc-esp-4); }
+
+.lj-campo label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: var(--bc-txt-cuerpo);
+  font-weight: var(--bc-peso-semi);
+}
+
+.lj-campo__ayuda {
+  margin: 0 0 8px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-campo input,
+.lj-campo select,
+.lj-campo textarea {
+  width: 100%;
+  min-height: var(--bc-tap-comodo);
+  padding: 12px var(--bc-esp-3);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  color: var(--bc-carbon);
+  background: var(--bc-blanco);
+  /* Borde de control: 7.01:1. Con --bc-gris-borde daba 1.40:1. */
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: 8px;
+}
+
+.lj-campo--error input { border: 2px solid var(--bc-error); }
+.lj-campo__error {
+  margin: 8px 0 0;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-error);
+}
+
+/* Casilla — el área táctil es la etiqueta entera, no el cuadrito */
+.lj-casilla {
+  display: flex;
+  gap: var(--bc-esp-3);
+  align-items: flex-start;
+  min-height: var(--bc-tap-comodo);
+  padding: var(--bc-esp-3);
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: var(--bc-radio-card);
+  cursor: pointer;
+}
+.lj-casilla input {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  margin: 0;
+  accent-color: var(--bc-carbon);
+}
+
+/* ============================================================
+   Comprobante — componente 6
+
+   Sale de una frase textual: alguien va a la sucursal porque
+   "queda uno más tranquilo de tener como la copia de lo que uno hizo".
+
+   El borde dentado y el número visible imitan el papel. El puente
+   con lo físico es lo que lo hace funcionar: con ese número te lo
+   imprimen en cualquier sucursal.
+   ============================================================ */
+
+.lj-comprobante {
+  padding: var(--bc-esp-5) var(--bc-esp-4) var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  background: var(--bc-superficie);
+  border: 1px solid var(--bc-gris-borde);
+  border-top: 4px solid var(--bc-amarillo);
+  border-radius: var(--bc-radio-card);
+  box-shadow: var(--bc-sombra-1);
+}
+
+.lj-comprobante__num {
+  margin: 0 0 var(--bc-esp-4);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  letter-spacing: .06em;
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-comprobante .lj-resumen__fila { padding: 12px 0; }
+
+/* Borde dentado: la metáfora del papel arrancado */
+.lj-dentado {
+  height: 12px;
+  margin: var(--bc-esp-4) calc(var(--bc-esp-4) * -1) 0;
+  background: radial-gradient(circle at 6px 12px,
+              var(--bc-gris-fondo) 6px, transparent 6.5px) repeat-x;
+  background-size: 16px 12px;
+}
+
+/* ============================================================
+   Navegación — componente 11
+
+   La app real marca el destino activo con un bloque amarillo completo
+   detrás del ítem, ocupando todo el alto de la barra. Es una decisión
+   inusual y muy reconocible: se conserva tal cual.
+
+   Cambio: de 5 destinos a 3, todos con ícono Y etiqueta de texto.
+   ============================================================ */
+
+.lj-nav {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--bc-blanco);
+  border-top: 1px solid var(--bc-gris-borde);
+  box-shadow: var(--bc-sombra-3);
+}
+
+.lj-nav button,
+.lj-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 72px;
+  padding: 8px 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-gris-texto-2);
+  text-decoration: none;
+  text-align: center;
+}
+.lj-nav svg { width: 24px; height: 24px; }
+
+/* Activo: bloque amarillo completo, texto e ícono en carbón (10.36:1) */
+.lj-nav [aria-current="page"] {
+  background: var(--bc-amarillo);
+  color: var(--bc-carbon);
+}
+
+/* ---------- Encabezado de pantalla ---------- */
+.lj-enc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+  padding: var(--bc-esp-4);
+  min-height: 64px;
+}
+.lj-enc--negro { background: var(--bc-carbon); color: var(--bc-blanco); }
+.lj-enc--negro .lj-volver,
+.lj-enc--negro .lj-migaja { color: var(--bc-blanco); }
+
+.lj-migaja {
+  margin: 0;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: var(--bc-txt-ui);
+}
+.lj-marca svg { width: 26px; height: 26px; flex: none; }
+
+/* ============================================================
+   Seguridad — sello de identidad (componente 10), palabra y
+   alerta de fraude.
+
+   Sin esto, nada de lo demás sirve: si la persona no puede saber
+   que un mensaje es del banco, la propuesta entera se cae.
+   ============================================================ */
+
+/* Sello de identidad — al pie de cualquier mensaje del agente */
+.lj-sello {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  margin: 0 0 var(--bc-esp-4);
+  padding: 0 4px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+  line-height: 1.4;
+}
+.lj-sello svg { width: 18px; height: 18px; flex: none; margin-top: 2px; }
+
+/* ---------- La palabra ----------
+   El estafador ya sabe el nombre de la persona: decir el nombre no
+   prueba nada. Una palabra que solo ella y el banco conocen, sí.
+   Todo mensaje real la trae. */
+.lj-palabra {
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border: 2px solid var(--bc-carbon);
+  border-radius: var(--bc-radio-card);
+  text-align: center;
+}
+.lj-palabra__et {
+  margin: 0 0 6px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+.lj-palabra__val {
+  margin: 0 0 8px;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-2), 40px);
+  letter-spacing: .1em;
+}
+
+/* ---------- Alerta de fraude ----------
+   Único sitio donde el amarillo no señala una acción sino un peligro.
+   Amarillo claro con carbón: 11.46:1. Nunca rojo — el rojo se reserva
+   para nada, porque en este sistema no hay rojo. */
+.lj-alerta-fraude {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--bc-esp-3);
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  background: var(--bc-amarillo-claro);
+  color: var(--bc-carbon);
+  border-radius: var(--bc-radio-card);
+}
+.lj-alerta-fraude svg { width: 26px; height: 26px; }
+.lj-alerta-fraude p { margin: 0; }
+.lj-alerta-fraude p + p { margin-top: 6px; }
+.lj-alerta-fraude .lj-nota { color: var(--bc-carbon); }
+
+/* ---------- Límites de la autonomía ----------
+   Lo hago solo / Siempre te pregunto. La información nunca depende
+   solo del color: cada lista lleva su encabezado. */
+.lj-limites { list-style: none; margin: 0 0 var(--bc-esp-5); padding: 0; }
+.lj-limites li {
+  padding: var(--bc-esp-3) 0 var(--bc-esp-3) var(--bc-esp-4);
+  font-size: var(--bc-txt-cuerpo);
+}
+/* 4.04:1 — el turquesa de marca #66DBB8 daría 1.69:1 y no sirve aquí */
+.lj-limites--solo li     { border-left: 4px solid var(--bc-turquesa-oscuro); }
+.lj-limites--pregunto li { border-left: 4px solid var(--bc-amarillo); }
+
+.lj-titulo-lista {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--bc-esp-3);
+}
+.lj-titulo-lista svg { width: 22px; height: 22px; flex: none; }
+.lj-titulo-lista h2 { margin: 0; }
+
+/* ============================================================
+   Esperas y Clave Dinámica
+
+   Nada de giros infinitos. Toda espera dice qué se está esperando,
+   cuánto lleva, y qué pasa si la persona cierra la app.
+   ============================================================ */
+
+.lj-espera {
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-card);
+}
+.lj-espera__et {
+  margin: 0 0 6px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+.lj-espera__que {
+  margin: 0 0 8px;
+  font-size: var(--bc-txt-ui);
+  font-weight: var(--bc-peso-semi);
+}
+.lj-espera__num {
+  margin: 0 0 8px;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-2), 40px);
+  line-height: 1.15;
+}
+
+.lj-barra {
+  height: 8px;
+  margin-top: var(--bc-esp-3);
+  border-radius: var(--bc-radio-pill);
+  background: var(--bc-gris-borde);
+  overflow: hidden;
+}
+.lj-barra > span {
+  display: block;
+  height: 100%;
+  background: var(--bc-carbon);
+}
+
+.lj-contador { text-align: center; margin: 0 0 var(--bc-esp-4); }
+.lj-contador__num {
+  display: block;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-1), 52px);
+  line-height: 1.1;
+}
+
+/* ---------- Clave Dinámica — componente 12 ----------
+   Es el elemento más distintivo de la app: tarjeta blanca flotante
+   con el código en dígitos grandes agrupados de a tres. Se conserva
+   íntegra. Único cambio: la primera vez, el agente explica qué es. */
+.lj-clave {
+  padding: var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  background: var(--bc-blanco);
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-card);
+  box-shadow: var(--bc-sombra-2);
+  text-align: center;
+}
+.lj-clave__et {
+  margin: 0 0 6px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+.lj-clave__num {
+  margin: 0 0 8px;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-1), 46px);
+  letter-spacing: .12em;
+}
+.lj-clave__tiempo {
+  margin: 0;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+.lj-clave__barra {
+  display: block;
+  height: 6px;
+  margin-top: 8px;
+  border-radius: var(--bc-radio-pill);
+  /* Pista oscura: el amarillo sobre --bc-gris-borde daba 1.01:1 y la
+     barra de tiempo era literalmente invisible. Sobre esto da 4.90:1. */
+  background: var(--bc-gris-texto-2);
+  overflow: hidden;
+}
+.lj-clave__barra > span {
+  display: block;
+  height: 100%;
+  background: var(--bc-amarillo);
+}
+
+/* ============================================================
+   Arcos de marca — componente 13
+
+   Trazos curvos gruesos saliendo del borde superior derecho. Es la
+   firma visual de Bancolombia y aparece tanto en el sitio como en la
+   app. Se conservan: son gratis en carga cognitiva porque no son
+   interactivos, y hacen que el modo simple siga siendo reconocible.
+
+   Van en position:absolute a propósito: al ser decorativos, no deben
+   cobrar espacio vertical en un flujo donde cada píxel está peleado.
+   ============================================================ */
+
+.lj-arcos {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 130px;
+  pointer-events: none;
+}
+
+.lj-pantalla { position: relative; }
+
+@media (max-width: 380px) {
+  .lj-arcos { width: 230px; height: 108px; }
+}
+
+/* ============================================================
+   Teléfono real
+
+   Estos componentes se usan en un celular, no solo en el navegador
+   del escritorio. Nada depende de :hover, que en táctil no existe.
+   Probado a 360, 390 y 430px.
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .lj-cifra                { font-size: min(var(--bc-cifra-1), 36px); }
+  .lj-cifra--media         { font-size: min(var(--bc-cifra-2), 28px); }
+  .lj-certeza__cifra       { font-size: min(var(--bc-cifra-1), 34px); }
+  .lj-clave__num           { font-size: min(var(--bc-cifra-1), 34px); letter-spacing: .08em; }
+  .lj-palabra__val         { font-size: min(var(--bc-cifra-2), 30px); }
+  .lj-contador__num        { font-size: min(var(--bc-cifra-1), 38px); }
+  .lj-resumen__va--cifra   { font-size: min(var(--bc-cifra-2), 28px); }
+}
+
+/* En táctil no hay hover: los estados viven en :active y :focus-visible */
+@media (hover: none) {
+  .lj-accion:active,
+  .lj-boton--primario:active { transition: none; }
+}

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lo-justo-design-kit — componentes</title>
+<link rel="stylesheet" href="../dist/lo-justo.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Manrope:wght@300;600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: var(--bc-gris-fondo); }
+  .pagina { max-width: 430px; margin: 0 auto; padding: var(--bc-esp-5) var(--bc-esp-4) var(--bc-esp-8); background: var(--bc-blanco); }
+  .seccion { padding: var(--bc-esp-6) 0 0; border-top: 1px solid var(--bc-gris-borde); margin-top: var(--bc-esp-6); }
+  .seccion:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+  .seccion__t { font-size: var(--bc-txt-nota); font-weight: var(--bc-peso-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--bc-gris-texto-2); margin: 0 0 var(--bc-esp-4); }
+  .cabecera { padding: var(--bc-esp-5) var(--bc-esp-4); background: var(--bc-carbon); color: var(--bc-blanco); }
+  .cabecera h1 { color: var(--bc-blanco); margin-bottom: var(--bc-esp-2); }
+  .cabecera p { margin: 0; color: var(--bc-blanco); }
+  .muestrario { display: grid; grid-template-columns: repeat(auto-fill, minmax(88px, 1fr)); gap: var(--bc-esp-3); }
+  .ficha__color { height: 56px; border-radius: 8px; border: 1px solid var(--bc-gris-borde); }
+  .ficha__n { font-size: var(--bc-txt-nota); margin: 6px 0 0; word-break: break-all; }
+  .control { display: flex; gap: var(--bc-esp-3); align-items: center; padding: var(--bc-esp-3) var(--bc-esp-4); background: var(--bc-gris-fondo-2); }
+  .control label { font-size: var(--bc-txt-nota); font-weight: var(--bc-peso-semi); }
+</style>
+</head>
+<body class="lj lo-justo">
+
+<div class="cabecera">
+  <h1>lo-justo-design-kit</h1>
+  <p>Todos los componentes, en una página. Sube el texto para ver que nada se rompe.</p>
+</div>
+
+<div class="control">
+  <label for="escala">Tamaño del texto</label>
+  <input id="escala" type="range" min="100" max="200" step="10" value="100">
+  <span id="valor" style="font-size: var(--bc-txt-nota)">100%</span>
+</div>
+
+<main class="pagina lj-pantalla">
+
+  <svg class="lj-arcos" viewBox="0 0 280 130" aria-hidden="true">
+    <g fill="none" stroke-width="13" stroke-linecap="round">
+      <path d="M 190 -40 A 100 100 0 0 1 290 60"   stroke="var(--bc-amarillo)"/>
+      <path d="M 158 -40 A 132 132 0 0 1 290 92"   stroke="var(--bc-coral)"/>
+      <path d="M 126 -40 A 164 164 0 0 1 290 124"  stroke="var(--bc-purpura)"/>
+      <path d="M  94 -40 A 196 196 0 0 1 290 156"  stroke="var(--bc-turquesa)"/>
+    </g>
+  </svg>
+
+  <section class="seccion" style="padding-top: 88px">
+    <p class="seccion__t">Botones</p>
+    <button class="lj-boton lj-boton--primario">Sí, enviar</button>
+    <button class="lj-boton lj-boton--secundario">Volver a revisar</button>
+    <button class="lj-boton lj-boton--texto">Ahora no</button>
+    <button class="lj-boton lj-boton--primario" disabled>Deshabilitado</button>
+    <button class="lj-boton lj-boton--primario" data-cargando>Enviando</button>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Dinero y tarjetas</p>
+    <div class="lj-tarjeta lj-tarjeta--saldo">
+      <p class="lj-etiqueta">En el celular</p>
+      <p class="lj-cifra">$ 300.000</p>
+      <p class="lj-nota">Esto es lo que mueves desde aquí.</p>
+    </div>
+    <div class="lj-tarjeta lj-tarjeta--destacada">
+      <p class="lj-etiqueta">Guardado</p>
+      <p class="lj-cifra lj-cifra--media">$ 2.400.000</p>
+      <p class="lj-nota">Lo mueves en la sucursal o en un cajero.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Tarjetas de acción</p>
+    <button class="lj-accion">
+      <svg class="lj-accion__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+      Enviar plata
+      <svg class="lj-accion__flecha" viewBox="0 0 24 24" fill="none" stroke="var(--bc-gris-texto-2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+    <button class="lj-accion">
+      <svg class="lj-accion__icono" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v14H4z"/><path d="M4 10h16"/></svg>
+      Pagar un recibo
+      <svg class="lj-accion__flecha" viewBox="0 0 24 24" fill="none" stroke="var(--bc-gris-texto-2)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">El agente · tres variantes</p>
+
+    <div class="lj-agente lj-agente--anticipa">
+      <span class="lj-agente__marca" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-carbon)" stroke-width="2.4" stroke-linecap="round"><path d="M2 8c3-3 5 3 8 0s5 3 8 0"/><path d="M2 15c3-3 5 3 8 0s5 3 8 0"/></svg></span>
+      <div>
+        <p class="lj-agente__texto">Preparé la transferencia. <strong>Mover plata siempre te lo pregunto.</strong></p>
+        <p class="lj-agente__bitacora"><span class="lj-agente__cuando">Hoy, 9:06 a.m.</span> No moví plata</p>
+      </div>
+    </div>
+
+    <div class="lj-agente lj-agente--explica">
+      <span class="lj-agente__marca" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-carbon)" stroke-width="2.4" stroke-linecap="round"><path d="M2 8c3-3 5 3 8 0s5 3 8 0"/><path d="M2 15c3-3 5 3 8 0s5 3 8 0"/></svg></span>
+      <div>
+        <dl class="lj-tres-partes">
+          <dt>Qué pasó</dt><dd>Se cayó la conexión justo cuando ibas a confirmar.</dd>
+          <dt>De quién fue</dt><dd><strong>Nuestro.</strong> El corte fue del lado del banco.</dd>
+          <dt>Qué sigue</dt><dd>La transferencia <strong>no se hizo</strong>. Nadie recibió nada.</dd>
+        </dl>
+        <p class="lj-agente__bitacora"><span class="lj-agente__cuando">Hoy, 11:22 a.m.</span> No moví plata</p>
+      </div>
+    </div>
+
+    <div class="lj-agente lj-agente--exito">
+      <span class="lj-agente__marca" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-carbon)" stroke-width="2.4" stroke-linecap="round"><path d="M2 8c3-3 5 3 8 0s5 3 8 0"/><path d="M2 15c3-3 5 3 8 0s5 3 8 0"/></svg></span>
+      <div>
+        <p class="lj-agente__texto">Guardé el comprobante en tu teléfono.</p>
+        <p class="lj-agente__bitacora"><span class="lj-agente__cuando">Hoy, 9:07 a.m.</span> <strong>Moví $ 80.000</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Certeza sobre el dinero</p>
+    <div class="lj-certeza lj-certeza--no-salio">
+      <p class="lj-certeza__t">Tu plata sigue completa</p>
+      <p class="lj-certeza__cifra">$ 300.000</p>
+      <p class="lj-nota">Lo comprobé contra tu cuenta, no contra este teléfono.</p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Campo de entrada</p>
+    <div class="lj-campo">
+      <label for="doc">Tu documento</label>
+      <p class="lj-campo__ayuda">Sin puntos ni comas.</p>
+      <input id="doc" type="text" inputmode="numeric" value="1020304050">
+    </div>
+    <label class="lj-casilla">
+      <input type="checkbox">
+      <span>Revisé el nombre y los últimos cuatro números.</span>
+    </label>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Comprobante</p>
+    <div class="lj-comprobante">
+      <p class="lj-comprobante__num">Comprobante 4471-2026-0810</p>
+      <div class="lj-resumen lj-resumen--pegado">
+        <div class="lj-resumen__fila"><p class="lj-resumen__et">Para</p><p class="lj-resumen__va">María Restrepo<span class="lj-resumen__sec">Ahorros ···· 4471</span></p></div>
+        <div class="lj-resumen__fila"><p class="lj-resumen__et">Monto</p><p class="lj-resumen__va lj-resumen__va--cifra">$ 80.000</p></div>
+      </div>
+      <div class="lj-dentado" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Clave Dinámica</p>
+    <div class="lj-clave">
+      <p class="lj-clave__et">Tu clave de seguridad</p>
+      <p class="lj-clave__num">316 145</p>
+      <p class="lj-clave__tiempo">Vence en 9 minutos
+        <span class="lj-clave__barra"><span style="width:90%"></span></span>
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Seguridad</p>
+    <div class="lj-palabra">
+      <p class="lj-palabra__et">Tu palabra</p>
+      <p class="lj-palabra__val">CIRUELA</p>
+      <p class="lj-nota">Todo mensaje nuestro la trae. Ninguno más la sabe.</p>
+    </div>
+    <div class="lj-alerta-fraude">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/><path d="M12 9v4"/><circle cx="12" cy="16" r=".7" fill="currentColor"/></svg>
+      <div>
+        <p><strong>Si alguien te está apurando para hacer esto, no es del banco.</strong></p>
+        <p class="lj-nota">Nunca te vamos a pedir que subas tu límite por teléfono.</p>
+      </div>
+    </div>
+    <p class="lj-sello">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-gris-texto-2)" stroke-width="2" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></svg>
+      <span>Nunca te vamos a pedir tus claves.</span>
+    </p>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Límites de la autonomía</p>
+    <div class="lj-titulo-lista">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-turquesa-oscuro)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+      <h2>Lo hago solo</h2>
+    </div>
+    <ul class="lj-limites lj-limites--solo">
+      <li>Buscar otra forma de mandarte un código si falla.</li>
+      <li>Guardar dónde quedaste.</li>
+    </ul>
+    <div class="lj-titulo-lista">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--bc-carbon)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 8v5"/></svg>
+      <h2>Siempre te pregunto</h2>
+    </div>
+    <ul class="lj-limites lj-limites--pregunto">
+      <li>Mover plata, sin importar el monto.</li>
+      <li>Subir tu límite del celular.</li>
+    </ul>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Registro · Lo que hice por ti</p>
+    <ul class="lj-registro">
+      <li>
+        <p class="lj-registro__hora">7:12 p.m.</p>
+        <p class="lj-registro__que">Vi que el código no te llegó. Tu operador bloqueaba nuestros mensajes.</p>
+        <span class="lj-marbete">No moví plata</span>
+      </li>
+      <li>
+        <p class="lj-registro__hora">9:07 a.m.</p>
+        <p class="lj-registro__que">Enviaste $ 80.000 a María Restrepo. Tú lo confirmaste.</p>
+        <span class="lj-marbete lj-marbete--plata">Moví $ 80.000</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="seccion">
+    <p class="seccion__t">Paleta</p>
+    <div class="muestrario" id="paleta"></div>
+  </section>
+
+</main>
+
+<nav class="lj-nav" aria-label="Ejemplo">
+  <button aria-current="page">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 11 9-7 9 7"/><path d="M6 10v10h12V10"/></svg>
+    Inicio
+  </button>
+  <button>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h14v16H5z"/><path d="M9 9h6"/><path d="M9 13h6"/></svg>
+    Lo que hice
+  </button>
+  <button>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3z"/></svg>
+    Seguridad
+  </button>
+</nav>
+
+<script type="module">
+  // La paleta se dibuja desde los tokens, no desde una lista escrita a mano:
+  // si un token cambia, el muestrario cambia solo.
+  import tokens from '../dist/tokens.mjs';
+
+  const paleta = document.getElementById('paleta');
+  for (const [nombre, valor] of Object.entries(tokens)) {
+    if (!/^#[0-9A-Fa-f]{6}$/.test(valor)) continue;
+    const ficha = document.createElement('div');
+    ficha.innerHTML =
+      `<div class="ficha__color" style="background:${valor}"></div>` +
+      `<p class="ficha__n">${nombre}<br>${valor}</p>`;
+    paleta.appendChild(ficha);
+  }
+
+  // Control de tamaño de texto: demuestra que la escala en rem sí responde
+  const escala = document.getElementById('escala');
+  const valor = document.getElementById('valor');
+  escala.addEventListener('input', () => {
+    document.documentElement.style.fontSize = (16 * escala.value / 100) + 'px';
+    valor.textContent = escala.value + '%';
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+/* ============================================================
+   Comprobante — componente 6
+
+   Sale de una frase textual: alguien va a la sucursal porque
+   "queda uno más tranquilo de tener como la copia de lo que uno hizo".
+
+   El borde dentado y el número visible imitan el papel. El puente
+   con lo físico es lo que lo hace funcionar: con ese número te lo
+   imprimen en cualquier sucursal.
+   ============================================================ */
+
+.lj-comprobante {
+  padding: var(--bc-esp-5) var(--bc-esp-4) var(--bc-esp-4);
+  margin: 0 0 var(--bc-esp-4);
+  background: var(--bc-superficie);
+  border: 1px solid var(--bc-gris-borde);
+  border-top: 4px solid var(--bc-amarillo);
+  border-radius: var(--bc-radio-card);
+  box-shadow: var(--bc-sombra-1);
+}
+
+.lj-comprobante__num {
+  margin: 0 0 var(--bc-esp-4);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  letter-spacing: .06em;
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-comprobante .lj-resumen__fila { padding: 12px 0; }
+
+/* Borde dentado: la metáfora del papel arrancado */
+.lj-dentado {
+  height: 12px;
+  margin: var(--bc-esp-4) calc(var(--bc-esp-4) * -1) 0;
+  background: radial-gradient(circle at 6px 12px,
+              var(--bc-gris-fondo) 6px, transparent 6.5px) repeat-x;
+  background-size: 16px 12px;
+}

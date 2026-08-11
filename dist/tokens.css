@@ -1,0 +1,185 @@
+/* ============================================================
+   Sistema de diseño — base Bancolombia
+   Derivado de design-reference/design.md (auditoría del sitio en vivo, 7 ago 2026)
+
+   [CSS]      = extraído con getComputedStyle del sitio real
+   [SVG]      = extraído del SVG decorativo del login
+   [PROPUESTO]= no existe en el sitio, derivado para completar el sistema
+   ============================================================ */
+
+:root {
+
+  /* ---------- Marca ---------- */
+  --bc-amarillo:            #FDDA24; /* [CSS] CTA primario, acentos de marca */
+  --bc-amarillo-svg:        #FDDA23; /* [SVG] misma marca, variante en ilustración */
+  --bc-amarillo-claro:      #FDE773; /* [CSS] fondos suaves, tarjetas promo */
+
+  /* ---------- Neutros ---------- */
+  --bc-negro:               #000000; /* [CSS] h3, botón secundario, nav superior */
+  --bc-carbon:              #2C2A29; /* [CSS] texto principal, header, texto sobre amarillo */
+  --bc-gris-texto:          #808285; /* [CSS] párrafos de cuerpo */
+  --bc-gris-texto-2:        #58595B; /* [CSS] textos auxiliares */
+  --bc-gris-borde:          #D9DADD; /* [CSS] bordes de input, separadores */
+  --bc-gris-deshab:         #CCCCCC; /* [CSS] botón deshabilitado */
+  --bc-gris-deshab-2:       #B3B5B8; /* [CSS] texto deshabilitado */
+  --bc-gris-fondo:          #F4F4F4; /* [CSS] fondo de sección */
+  --bc-gris-fondo-2:        #EEEEEE; /* [CSS] fondo de sección alterno */
+  --bc-gris-fondo-3:        #F2F2F4; /* [CSS] fondo de sección alterno */
+  --bc-gris-pagina:         #F9F9FA; /* [CSS] fondo de página (login) */
+  --bc-blanco:              #FFFFFF;
+
+  /* ---------- Acentos secundarios ---------- */
+  --bc-turquesa:            #66DBB8; /* [CSS] tarjetas promo, categorías FAQ */
+  --bc-lavanda:             #C5ADE5; /* [CSS] tarjetas promo */
+  --bc-melocoton:           #FFB28D; /* [CSS] tarjetas promo */
+  --bc-coral:               #FF7E41; /* [SVG] ilustración, campañas */
+  --bc-purpura:             #9062CD; /* [SVG] ilustración de autenticación */
+
+  /* ---------- Semánticos ----------
+     No se pudieron confirmar en el sitio: los elementos con clase error/alert
+     encontrados eran íconos en gris, no alertas de color.
+     Estos se derivan de la paleta existente. */
+  --bc-exito:               #1F8F6B; /* [PROPUESTO] turquesa oscurecido para contraste AA */
+  --bc-exito-fondo:         #E7F8F2; /* [PROPUESTO] */
+  --bc-alerta:              #B35A1E; /* [PROPUESTO] coral oscurecido */
+  --bc-alerta-fondo:        #FFF1E9; /* [PROPUESTO] */
+  --bc-error:               #C2352B; /* [PROPUESTO] no existe rojo en la marca */
+  --bc-error-fondo:         #FCEDEC; /* [PROPUESTO] */
+  --bc-info:                #5B3E8F; /* [PROPUESTO] púrpura oscurecido */
+  --bc-info-fondo:          #F1EBFA; /* [PROPUESTO] */
+
+  /* ---------- Tipografía ----------
+     Las originales son propietarias y no están disponibles:
+       CIB Sans Bold / CIB Sans Light  → títulos
+       BC Icons                        → iconografía
+     Sustitutos libres, de proporciones cercanas: */
+  /* La pila lleva -apple-system y Segoe UI porque el prototipo se abre en un
+     teléfono, a veces sin conexión: si Google Fonts no carga, cae en la fuente
+     del sistema y no en Times. [AJUSTADO 10 ago 2026] */
+  --bc-font-titulo:  'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; /* sustituto de CIB Sans */
+  --bc-font-cuerpo:  'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;        /* [CSS] la real, es libre */
+
+  --bc-peso-light:    300;  /* CIB Sans Light era 200 */
+  --bc-peso-regular:  400;
+  --bc-peso-semi:     600;
+  --bc-peso-bold:     700;
+
+  /* Escala observada en el sitio [CSS] */
+  --bc-txt-saludo:    36px; /* "¡Hola!" del login, en Light */
+  --bc-txt-h1:        32px;
+  --bc-txt-h2:        32px;
+  --bc-txt-h3:        20px;
+  --bc-txt-ui:        16px; /* nav, links, inputs, botones */
+  --bc-txt-cuerpo:    14px;
+  --bc-txt-nota:      12px; /* [PROPUESTO] */
+
+  --bc-alto-linea:      1.5;
+  --bc-alto-linea-tit:  1.2;
+
+  /* ---------- Espaciado ----------
+     [PROPUESTO] — no medido en la auditoría. Escala de 4. */
+  --bc-esp-1:  4px;
+  --bc-esp-2:  8px;
+  --bc-esp-3:  12px;
+  --bc-esp-4:  16px;
+  --bc-esp-5:  24px;
+  --bc-esp-6:  32px;
+  --bc-esp-7:  48px;
+  --bc-esp-8:  64px;
+
+  /* ---------- Radios ---------- */
+  --bc-radio-pill:   999px; /* [CSS] todos los botones del sitio son pill */
+  --bc-radio-card:   12px;  /* [PROPUESTO] */
+  --bc-radio-input:  0px;   /* [CSS] los inputs del login son underline, sin caja */
+  --bc-radio-chip:   999px; /* [CSS] buscador del centro de ayuda */
+
+  /* ---------- Áreas táctiles ----------
+     [PROPUESTO] mínimos de accesibilidad, no del sitio.
+     Relevantes porque 21.7% de personas mayores en Colombia
+     tiene alguna discapacidad certificada (MinSalud). */
+  --bc-tap-min:      44px;
+  --bc-tap-comodo:   56px;
+
+  /* ---------- Bordes ---------- */
+  --bc-borde:        1px solid var(--bc-gris-borde);
+  --bc-borde-fuerte: 2px solid var(--bc-carbon);
+
+  /* ---------- Agregados para el prototipo ----------
+     [PROPUESTO] Todos derivados de la paleta existente. Ninguno inventa un color nuevo:
+     son estados, sombras y superficies que el sitio no expone en CSS.
+     Registrados en prototipo/CHANGELOG.md. */
+
+  --bc-amarillo-presionado: #E9C821; /* [PROPUESTO] amarillo 8% más oscuro, estado :active */
+  --bc-turquesa-oscuro:     #1F8F6B; /* [PROPUESTO] mismo valor que --bc-exito. El turquesa
+                                        #66DBB8 da 1.69:1 contra blanco y no alcanza el 3:1
+                                        que necesita un borde que carga significado */
+
+  /* Superficies */
+  --bc-superficie:      var(--bc-blanco);   /* [PROPUESTO] tarjetas */
+  --bc-superficie-alt:  var(--bc-gris-fondo-2); /* [PROPUESTO] bloque del agente, neutro */
+  --bc-velo:            rgba(44, 42, 41, 0.55); /* [PROPUESTO] fondo de capa modal, carbón 55% */
+
+  /* Sombras — el sitio no las expone; la app sí las usa en la Clave Dinámica */
+  --bc-sombra-1: 0 1px 2px rgba(44, 42, 41, 0.08);            /* [PROPUESTO] */
+  --bc-sombra-2: 0 4px 16px rgba(44, 42, 41, 0.12);           /* [PROPUESTO] tarjeta flotante */
+  --bc-sombra-3: 0 -2px 12px rgba(44, 42, 41, 0.10);          /* [PROPUESTO] barra inferior */
+
+  /* Foco visible — obligatorio para navegación por teclado.
+     Doble anillo: carbón sobre halo blanco, para que se vea también sobre amarillo. */
+  --bc-foco:       var(--bc-carbon);  /* [PROPUESTO] */
+  --bc-foco-halo:  var(--bc-blanco);  /* [PROPUESTO] */
+  --bc-foco-ancho: 3px;               /* [PROPUESTO] */
+
+  /* Duración de las transiciones. Corta a propósito: tiene que correr en teléfonos lentos. */
+  --bc-mov-rapido: 120ms; /* [PROPUESTO] */
+  --bc-mov-medio:  200ms; /* [PROPUESTO] */
+}
+
+/* ============================================================
+   MODO "LO JUSTO"
+   Ajustes para el modo simplificado. Misma marca, otra escala.
+   El principio: la marca no cambia, cambia la densidad.
+   ============================================================ */
+
+.lo-justo {
+  /* Tipografía más grande en todo */
+  --bc-txt-h1:      36px;
+  --bc-txt-h2:      28px;
+  --bc-txt-h3:      22px;
+  --bc-txt-ui:      20px;
+  --bc-txt-cuerpo:  18px;  /* mínimo absoluto en este modo */
+  --bc-txt-nota:    18px;  /* [CORREGIDO 10 ago 2026] valía 16px, lo que contradecía la
+                              restricción 2 de PROTOTIPO-SPEC ("ningún texto por debajo
+                              de 18px") y la etiqueta de nav de COMPONENTES §11.
+                              Gana la restricción: en este modo no hay letra chica.
+                              Ver prototipo/OBSERVACIONES.md, observación 1. */
+
+  /* Áreas táctiles más generosas */
+  --bc-tap-min:     56px;
+  --bc-tap-comodo:  64px;
+
+  /* Más aire entre elementos */
+  --bc-esp-4:  20px;
+  --bc-esp-5:  32px;
+  --bc-esp-6:  40px;
+
+  /* Contraste reforzado: el texto secundario sube a carbón */
+  --bc-gris-texto: var(--bc-carbon);
+}
+
+/* ============================================================
+   REGLAS DEL MODO LO JUSTO — no son estilos, son restricciones
+   ============================================================
+
+   1. Máximo 3 acciones visibles por pantalla.
+   2. Nada de carruseles, banners promocionales ni contenido que rote.
+   3. Todo botón lleva texto. Ningún ícono solo.
+   4. Un solo botón amarillo por pantalla — el amarillo señala LA acción.
+   5. Ningún texto por debajo de 18px.
+   6. Nada de scroll horizontal.
+   7. Toda pantalla dice dónde estás y cómo volver.
+   8. Las cifras de dinero nunca se abrevian: "$150.000", no "$150K".
+   9. Ningún estado de error sin causa y siguiente paso.
+  10. Ninguna sesión expira en silencio.
+
+   ============================================================ */

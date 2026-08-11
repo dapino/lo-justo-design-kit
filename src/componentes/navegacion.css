@@ -1,0 +1,76 @@
+/* ============================================================
+   Navegación — componente 11
+
+   La app real marca el destino activo con un bloque amarillo completo
+   detrás del ítem, ocupando todo el alto de la barra. Es una decisión
+   inusual y muy reconocible: se conserva tal cual.
+
+   Cambio: de 5 destinos a 3, todos con ícono Y etiqueta de texto.
+   ============================================================ */
+
+.lj-nav {
+  position: sticky;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--bc-blanco);
+  border-top: 1px solid var(--bc-gris-borde);
+  box-shadow: var(--bc-sombra-3);
+}
+
+.lj-nav button,
+.lj-nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 72px;
+  padding: 8px 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-gris-texto-2);
+  text-decoration: none;
+  text-align: center;
+}
+.lj-nav svg { width: 24px; height: 24px; }
+
+/* Activo: bloque amarillo completo, texto e ícono en carbón (10.36:1) */
+.lj-nav [aria-current="page"] {
+  background: var(--bc-amarillo);
+  color: var(--bc-carbon);
+}
+
+/* ---------- Encabezado de pantalla ---------- */
+.lj-enc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+  padding: var(--bc-esp-4);
+  min-height: 64px;
+}
+.lj-enc--negro { background: var(--bc-carbon); color: var(--bc-blanco); }
+.lj-enc--negro .lj-volver,
+.lj-enc--negro .lj-migaja { color: var(--bc-blanco); }
+
+.lj-migaja {
+  margin: 0;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: var(--bc-txt-ui);
+}
+.lj-marca svg { width: 26px; height: 26px; flex: none; }

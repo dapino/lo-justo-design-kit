@@ -1,0 +1,26 @@
+/* ============================================================
+   Arcos de marca — componente 13
+
+   Trazos curvos gruesos saliendo del borde superior derecho. Es la
+   firma visual de Bancolombia y aparece tanto en el sitio como en la
+   app. Se conservan: son gratis en carga cognitiva porque no son
+   interactivos, y hacen que el modo simple siga siendo reconocible.
+
+   Van en position:absolute a propósito: al ser decorativos, no deben
+   cobrar espacio vertical en un flujo donde cada píxel está peleado.
+   ============================================================ */
+
+.lj-arcos {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 280px;
+  height: 130px;
+  pointer-events: none;
+}
+
+.lj-pantalla { position: relative; }
+
+@media (max-width: 380px) {
+  .lj-arcos { width: 230px; height: 108px; }
+}

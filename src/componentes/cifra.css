@@ -1,0 +1,67 @@
+/* ============================================================
+   Formato de dinero — componente 14
+
+   Formato exacto de la app: "$ 300.000". Punto de miles, coma para
+   decimales, espacio después del peso, centavos en tamaño reducido.
+   NUNCA abreviado: "$150.000", jamás "$150K".
+
+   Mínimo 32px. El techo con min() evita que al 200% se salga de la
+   pantalla: lo que ya era grande no necesita doblar.
+   ============================================================ */
+
+.lj-cifra {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-1), 52px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+.lj-cifra--media { font-size: min(var(--bc-cifra-2), 44px); }
+.lj-cifra--chica { font-size: min(var(--bc-cifra-3), 32px); }
+
+/* Centavos a tamaño reducido, como en la app real */
+.lj-cifra__centavos { font-size: .6em; }
+
+/* ---------- Resumen de filas etiqueta/valor ---------- */
+.lj-resumen {
+  border-top: 1px solid var(--bc-gris-borde);
+  margin: 0 0 var(--bc-esp-5);
+}
+.lj-resumen--pegado { margin-bottom: 0; }
+.lj-resumen__fila {
+  display: flex;
+  flex-wrap: wrap;              /* se parte en dos líneas antes que desbordar */
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-4);
+  padding: var(--bc-esp-4) 0;
+  border-bottom: 1px solid var(--bc-gris-borde);
+}
+.lj-resumen__et { color: var(--bc-gris-texto-2); margin: 0; }
+.lj-resumen__va { font-weight: var(--bc-peso-semi); margin: 0; }
+.lj-resumen__va--cifra {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-bold);
+  font-size: min(var(--bc-cifra-2), 42px);
+}
+.lj-resumen__sec {
+  display: block;
+  font-weight: var(--bc-peso-regular);
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+/* ---------- Comparar dos cifras ---------- */
+.lj-comparar { margin: 0 0 var(--bc-esp-4); }
+.lj-comparar__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+  padding: var(--bc-esp-3) 0;
+  border-bottom: 1px solid var(--bc-gris-borde);
+}
+.lj-comparar__fila--tope { border-bottom: 3px solid var(--bc-amarillo); }
+.lj-comparar__fila .lj-etiqueta { margin: 0; }

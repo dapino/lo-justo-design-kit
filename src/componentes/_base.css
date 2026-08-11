@@ -1,0 +1,91 @@
+/* ============================================================
+   Base — lo mínimo para que los componentes se comporten igual
+   en cualquier página. No es un reset completo a propósito.
+   ============================================================ */
+
+.lj {
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-cuerpo);
+  line-height: var(--bc-alto-linea);
+  color: var(--bc-carbon);
+  -webkit-text-size-adjust: 100%;
+}
+
+.lj *,
+.lj *::before,
+.lj *::after { box-sizing: border-box; }
+
+/* Escala en rem: sin esto, subir el texto del sistema al 200% no hace nada.
+   Los px equivalentes van al lado para poder leer la escala de un vistazo. */
+.lj {
+  --bc-txt-h1:     2.25rem;   /* 36px */
+  --bc-txt-h2:     1.75rem;   /* 28px */
+  --bc-txt-h3:     1.375rem;  /* 22px */
+  --bc-txt-ui:     1.25rem;   /* 20px */
+  --bc-txt-cuerpo: 1.125rem;  /* 18px — mínimo absoluto del modo */
+  --bc-txt-nota:   1.125rem;  /* 18px */
+
+  --bc-cifra-1:    2.5rem;    /* 40px */
+  --bc-cifra-2:    2rem;      /* 32px — mínimo para dinero */
+  --bc-cifra-3:    1.375rem;  /* 22px */
+}
+
+/* Foco visible en todo lo interactivo, también sobre amarillo.
+   Doble anillo: carbón sobre halo blanco. */
+.lj :focus-visible {
+  outline: var(--bc-foco-ancho) solid var(--bc-foco);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 calc(var(--bc-foco-ancho) + 2px) var(--bc-foco-halo);
+}
+
+/* Ninguna palabra larga desborda su caja al crecer el texto */
+.lj h1, .lj h2, .lj h3, .lj p, .lj li,
+.lj dd, .lj dt, .lj button, .lj label { overflow-wrap: break-word; }
+
+.lj h1, .lj h2, .lj h3 {
+  font-family: var(--bc-font-titulo);
+  line-height: var(--bc-alto-linea-tit);
+  margin: 0 0 var(--bc-esp-3);
+}
+.lj h1 { font-size: min(var(--bc-txt-h2), 40px); font-weight: var(--bc-peso-bold); }
+.lj h2 { font-size: min(var(--bc-txt-h3), 34px); font-weight: var(--bc-peso-bold); }
+.lj h3 { font-size: var(--bc-txt-ui); font-weight: var(--bc-peso-semi); }
+.lj p  { margin: 0 0 var(--bc-esp-3); }
+
+/* Saludo — el h1 en peso light del login real */
+.lj-saludo {
+  font-family: var(--bc-font-titulo);
+  font-weight: var(--bc-peso-light);
+  font-size: min(var(--bc-txt-h1), 46px);
+  line-height: var(--bc-alto-linea-tit);
+  margin: 0 0 var(--bc-esp-2);
+}
+
+.lj-antetitulo {
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-bold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--bc-gris-texto-2);
+  margin: 0 0 var(--bc-esp-2);
+}
+
+.lj-nota {
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+  margin: 8px 0 0;
+  line-height: 1.4;
+}
+
+.lj-etiqueta {
+  font-size: var(--bc-txt-cuerpo);
+  color: var(--bc-gris-texto);
+  margin: 0 0 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lj *, .lj *::before, .lj *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

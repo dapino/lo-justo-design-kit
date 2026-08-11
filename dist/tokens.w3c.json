@@ -1,0 +1,712 @@
+{
+  "$description": "Lo justo — sistema de diseño. Valores extraídos del sitio y la app reales de Bancolombia; los marcados PROPUESTO se derivaron para completar el sistema.",
+  "color": {
+    "amarillo": {
+      "$value": "#FDDA24",
+      "$type": "color",
+      "$description": "CTA primario, acentos de marca",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "amarillo-svg": {
+      "$value": "#FDDA23",
+      "$type": "color",
+      "$description": "misma marca, variante en ilustración",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "SVG"
+        }
+      }
+    },
+    "amarillo-claro": {
+      "$value": "#FDE773",
+      "$type": "color",
+      "$description": "fondos suaves, tarjetas promo",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "negro": {
+      "$value": "#000000",
+      "$type": "color",
+      "$description": "h3, botón secundario, nav superior",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "carbon": {
+      "$value": "#2C2A29",
+      "$type": "color",
+      "$description": "texto principal, header, texto sobre amarillo",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-texto": {
+      "$value": "#808285",
+      "$type": "color",
+      "$description": "párrafos de cuerpo",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-texto-2": {
+      "$value": "#58595B",
+      "$type": "color",
+      "$description": "textos auxiliares",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-borde": {
+      "$value": "#D9DADD",
+      "$type": "color",
+      "$description": "bordes de input, separadores",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-deshab": {
+      "$value": "#CCCCCC",
+      "$type": "color",
+      "$description": "botón deshabilitado",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-deshab-2": {
+      "$value": "#B3B5B8",
+      "$type": "color",
+      "$description": "texto deshabilitado",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-fondo": {
+      "$value": "#F4F4F4",
+      "$type": "color",
+      "$description": "fondo de sección",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-fondo-2": {
+      "$value": "#EEEEEE",
+      "$type": "color",
+      "$description": "fondo de sección alterno",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-fondo-3": {
+      "$value": "#F2F2F4",
+      "$type": "color",
+      "$description": "fondo de sección alterno",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "gris-pagina": {
+      "$value": "#F9F9FA",
+      "$type": "color",
+      "$description": "fondo de página (login)",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "blanco": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "turquesa": {
+      "$value": "#66DBB8",
+      "$type": "color",
+      "$description": "tarjetas promo, categorías FAQ",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "lavanda": {
+      "$value": "#C5ADE5",
+      "$type": "color",
+      "$description": "tarjetas promo",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "melocoton": {
+      "$value": "#FFB28D",
+      "$type": "color",
+      "$description": "tarjetas promo",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "coral": {
+      "$value": "#FF7E41",
+      "$type": "color",
+      "$description": "ilustración, campañas",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "SVG"
+        }
+      }
+    },
+    "purpura": {
+      "$value": "#9062CD",
+      "$type": "color",
+      "$description": "ilustración de autenticación",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "SVG"
+        }
+      }
+    },
+    "exito": {
+      "$value": "#1F8F6B",
+      "$type": "color",
+      "$description": "turquesa oscurecido para contraste AA",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "exito-fondo": {
+      "$value": "#E7F8F2",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "alerta": {
+      "$value": "#B35A1E",
+      "$type": "color",
+      "$description": "coral oscurecido",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "alerta-fondo": {
+      "$value": "#FFF1E9",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "error": {
+      "$value": "#C2352B",
+      "$type": "color",
+      "$description": "no existe rojo en la marca",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "error-fondo": {
+      "$value": "#FCEDEC",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "info": {
+      "$value": "#5B3E8F",
+      "$type": "color",
+      "$description": "púrpura oscurecido",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "info-fondo": {
+      "$value": "#F1EBFA",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "amarillo-presionado": {
+      "$value": "#E9C821",
+      "$type": "color",
+      "$description": "amarillo 8% más oscuro, estado :active",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "turquesa-oscuro": {
+      "$value": "#1F8F6B",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "superficie": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$description": "tarjetas",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "superficie-alt": {
+      "$value": "#EEEEEE",
+      "$type": "color",
+      "$description": "bloque del agente, neutro",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "velo": {
+      "$value": "rgba(44, 42, 41, 0.55)",
+      "$type": "color",
+      "$description": "fondo de capa modal, carbón 55%",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "foco": {
+      "$value": "#2C2A29",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "foco-halo": {
+      "$value": "#FFFFFF",
+      "$type": "color",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    }
+  },
+  "fontFamilies": {
+    "font-titulo": {
+      "$value": "'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+      "$type": "fontFamily",
+      "$description": "sustituto de CIB Sans",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "font-cuerpo": {
+      "$value": "'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif",
+      "$type": "fontFamily",
+      "$description": "la real, es libre",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    }
+  },
+  "fontWeights": {
+    "peso-light": {
+      "$value": "300",
+      "$type": "fontWeight",
+      "$description": "CIB Sans Light era 200",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "peso-regular": {
+      "$value": "400",
+      "$type": "fontWeight",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "peso-semi": {
+      "$value": "600",
+      "$type": "fontWeight",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "peso-bold": {
+      "$value": "700",
+      "$type": "fontWeight",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    }
+  },
+  "fontSizes": {
+    "txt-saludo": {
+      "$value": "36px",
+      "$type": "dimension",
+      "$description": "\"¡Hola!\" del login, en Light",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-h1": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-h2": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-h3": {
+      "$value": "20px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-ui": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$description": "nav, links, inputs, botones",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-cuerpo": {
+      "$value": "14px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "txt-nota": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    }
+  },
+  "lineHeights": {
+    "alto-linea": {
+      "$value": "1.5",
+      "$type": "number",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "alto-linea-tit": {
+      "$value": "1.2",
+      "$type": "number",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    }
+  },
+  "spacing": {
+    "esp-1": {
+      "$value": "4px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-2": {
+      "$value": "8px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-3": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-4": {
+      "$value": "16px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-5": {
+      "$value": "24px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-6": {
+      "$value": "32px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-7": {
+      "$value": "48px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "esp-8": {
+      "$value": "64px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    }
+  },
+  "borderRadius": {
+    "radio-pill": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "todos los botones del sitio son pill",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "radio-card": {
+      "$value": "12px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "radio-input": {
+      "$value": "0px",
+      "$type": "dimension",
+      "$description": "los inputs del login son underline, sin caja",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    },
+    "radio-chip": {
+      "$value": "999px",
+      "$type": "dimension",
+      "$description": "buscador del centro de ayuda",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "CSS"
+        }
+      }
+    }
+  },
+  "sizing": {
+    "tap-min": {
+      "$value": "44px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "tap-comodo": {
+      "$value": "56px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    }
+  },
+  "border": {
+    "borde": {
+      "$value": "1px solid var(--bc-gris-borde)",
+      "$type": "border",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    },
+    "borde-fuerte": {
+      "$value": "2px solid var(--bc-carbon)",
+      "$type": "border",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "DERIVADO"
+        }
+      }
+    }
+  },
+  "boxShadow": {
+    "sombra-1": {
+      "$value": "0 1px 2px rgba(44, 42, 41, 0.08)",
+      "$type": "shadow",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "sombra-2": {
+      "$value": "0 4px 16px rgba(44, 42, 41, 0.12)",
+      "$type": "shadow",
+      "$description": "tarjeta flotante",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "sombra-3": {
+      "$value": "0 -2px 12px rgba(44, 42, 41, 0.10)",
+      "$type": "shadow",
+      "$description": "barra inferior",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    }
+  },
+  "borderWidth": {
+    "foco-ancho": {
+      "$value": "3px",
+      "$type": "dimension",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    }
+  },
+  "other": {
+    "mov-rapido": {
+      "$value": "120ms",
+      "$type": "other",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    },
+    "mov-medio": {
+      "$value": "200ms",
+      "$type": "other",
+      "$extensions": {
+        "lo-justo": {
+          "procedencia": "PROPUESTO"
+        }
+      }
+    }
+  }
+}

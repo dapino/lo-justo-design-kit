@@ -1,0 +1,35 @@
+name: Verificar
+
+# El contraste se verifica en cada push. Un sistema de diseño que promete
+# 4.5:1 y no lo comprueba está prometiendo algo que no sabe si cumple.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verificar contraste
+        run: npm run verificar
+
+      - name: Construir
+        run: node scripts/construir.mjs
+
+      - name: dist/ debe estar al día con src/
+        run: |
+          if [ -n "$(git status --porcelain dist)" ]; then
+            echo "dist/ quedó desactualizado. Corre 'npm run construir' y haz commit."
+            git --no-pager diff --stat dist
+            exit 1
+          fi
+          echo "dist/ está al día."

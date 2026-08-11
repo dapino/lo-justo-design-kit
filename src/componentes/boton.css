@@ -1,0 +1,81 @@
+/* ============================================================
+   Botones — componentes 1, 2 y 3 de COMPONENTES.md
+
+   Regla: un solo botón amarillo por pantalla. El amarillo señala
+   LA acción, no UNA acción. Y sobre amarillo siempre carbón:
+   blanco sobre #FDDA24 da 1.38:1 y está prohibido.
+   ============================================================ */
+
+.lj-boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: var(--bc-tap-comodo);   /* 56px, crece si crece el texto */
+  padding: 14px var(--bc-esp-5);
+  border: 2px solid transparent;
+  border-radius: var(--bc-radio-pill);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  font-weight: var(--bc-peso-semi);
+  text-align: center;
+  cursor: pointer;
+  margin: 0 0 10px;
+  transition: background-color var(--bc-mov-rapido) linear;
+}
+
+.lj-boton--primario {
+  background: var(--bc-amarillo);
+  color: var(--bc-carbon);            /* nunca blanco */
+}
+.lj-boton--primario:active { background: var(--bc-amarillo-presionado); }
+
+.lj-boton--secundario {
+  background: transparent;
+  border-color: var(--bc-carbon);
+  color: var(--bc-carbon);
+}
+.lj-boton--secundario:active { background: var(--bc-gris-fondo); }
+
+.lj-boton--texto {
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  color: var(--bc-carbon);
+}
+
+.lj-boton[disabled],
+.lj-boton[aria-disabled="true"] {
+  background: var(--bc-gris-deshab);
+  border-color: transparent;
+  color: var(--bc-gris-deshab-2);
+  cursor: not-allowed;
+}
+
+/* Cargando: el texto se mantiene, nunca se vacía el botón */
+.lj-boton[data-cargando]::after {
+  content: "";
+  width: 20px; height: 20px;
+  border: 3px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: lj-girar 700ms linear infinite;
+}
+@keyframes lj-girar { to { transform: rotate(360deg); } }
+
+/* Botón de volver — toda pantalla dice cómo salir */
+.lj-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: var(--bc-tap-comodo);
+  padding: 0 4px;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-nota);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-carbon);
+}

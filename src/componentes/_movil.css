@@ -1,0 +1,23 @@
+/* ============================================================
+   Teléfono real
+
+   Estos componentes se usan en un celular, no solo en el navegador
+   del escritorio. Nada depende de :hover, que en táctil no existe.
+   Probado a 360, 390 y 430px.
+   ============================================================ */
+
+@media (max-width: 380px) {
+  .lj-cifra                { font-size: min(var(--bc-cifra-1), 36px); }
+  .lj-cifra--media         { font-size: min(var(--bc-cifra-2), 28px); }
+  .lj-certeza__cifra       { font-size: min(var(--bc-cifra-1), 34px); }
+  .lj-clave__num           { font-size: min(var(--bc-cifra-1), 34px); letter-spacing: .08em; }
+  .lj-palabra__val         { font-size: min(var(--bc-cifra-2), 30px); }
+  .lj-contador__num        { font-size: min(var(--bc-cifra-1), 38px); }
+  .lj-resumen__va--cifra   { font-size: min(var(--bc-cifra-2), 28px); }
+}
+
+/* En táctil no hay hover: los estados viven en :active y :focus-visible */
+@media (hover: none) {
+  .lj-accion:active,
+  .lj-boton--primario:active { transition: none; }
+}

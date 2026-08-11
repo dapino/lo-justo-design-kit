@@ -1,0 +1,70 @@
+/* ============================================================
+   Tarjetas — componentes 4 y 5 de COMPONENTES.md
+
+   La tarjeta de acción reemplaza la cuadrícula de íconos de la app
+   actual: una por fila, nunca en cuadrícula, máximo tres por pantalla.
+   ============================================================ */
+
+.lj-tarjeta {
+  background: var(--bc-superficie);
+  border: 1px solid var(--bc-gris-borde);
+  border-radius: var(--bc-radio-card);
+  padding: var(--bc-esp-3) var(--bc-esp-4);
+  margin: 0 0 10px;
+}
+
+/* Destacada: borde amarillo de 2px.
+   Ojo — 1.38:1 contra blanco. Es refuerzo redundante, nunca puede ser
+   lo único que distinga la tarjeta. Siempre acompañar con jerarquía. */
+.lj-tarjeta--destacada { border: 2px solid var(--bc-amarillo); }
+
+/* Tarjeta de saldo: fondo carbón, texto blanco, 14.28:1 */
+.lj-tarjeta--saldo {
+  background: var(--bc-carbon);
+  border-color: var(--bc-carbon);
+  color: var(--bc-blanco);
+  padding: var(--bc-esp-4);
+}
+.lj-tarjeta--saldo .lj-etiqueta,
+.lj-tarjeta--saldo .lj-nota { color: var(--bc-blanco); }
+
+/* ---------- Tarjeta de acción ---------- */
+.lj-accion {
+  display: flex;
+  align-items: center;
+  gap: var(--bc-esp-4);
+  width: 100%;
+  min-height: 72px;
+  padding: var(--bc-esp-4);
+  margin: 0 0 10px;
+  background: var(--bc-superficie);
+  /* El borde identifica un control: necesita 3:1. --bc-gris-borde da
+     1.40:1 y las tarjetas quedaban invisibles con poca visión. */
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: var(--bc-radio-card);
+  text-align: left;
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  font-weight: var(--bc-peso-semi);
+  color: var(--bc-carbon);
+  cursor: pointer;
+}
+.lj-accion:active { background: var(--bc-gris-fondo); }
+.lj-accion__icono  { width: 28px; height: 28px; flex: none; }
+.lj-accion__flecha { width: 20px; height: 20px; margin-left: auto; flex: none; }
+
+/* Fila secundaria: para lo que acompaña sin competir */
+.lj-fila {
+  padding: var(--bc-esp-3) 0 var(--bc-esp-4);
+  border-bottom: 1px solid var(--bc-gris-borde);
+  margin: 0 0 var(--bc-esp-4);
+}
+.lj-fila__linea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--bc-esp-3);
+}
+.lj-fila .lj-etiqueta { margin: 0; }
+.lj-fila .lj-nota { margin: 4px 0 0; }

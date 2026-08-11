@@ -1,0 +1,65 @@
+/* ============================================================
+   Campo de entrada — componente 7
+
+   El sitio real usa underline con label flotante. Aquí se cambia a
+   caja con label fijo arriba: el label flotante desaparece al escribir
+   y obliga a recordar qué se estaba llenando.
+
+   La ayuda de formato va ANTES de escribir, no después de fallar.
+   ============================================================ */
+
+.lj-campo { margin: 0 0 var(--bc-esp-4); }
+
+.lj-campo label {
+  display: block;
+  margin: 0 0 6px;
+  font-size: var(--bc-txt-cuerpo);
+  font-weight: var(--bc-peso-semi);
+}
+
+.lj-campo__ayuda {
+  margin: 0 0 8px;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-gris-texto-2);
+}
+
+.lj-campo input,
+.lj-campo select,
+.lj-campo textarea {
+  width: 100%;
+  min-height: var(--bc-tap-comodo);
+  padding: 12px var(--bc-esp-3);
+  font-family: var(--bc-font-cuerpo);
+  font-size: var(--bc-txt-ui);
+  color: var(--bc-carbon);
+  background: var(--bc-blanco);
+  /* Borde de control: 7.01:1. Con --bc-gris-borde daba 1.40:1. */
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: 8px;
+}
+
+.lj-campo--error input { border: 2px solid var(--bc-error); }
+.lj-campo__error {
+  margin: 8px 0 0;
+  font-size: var(--bc-txt-nota);
+  color: var(--bc-error);
+}
+
+/* Casilla — el área táctil es la etiqueta entera, no el cuadrito */
+.lj-casilla {
+  display: flex;
+  gap: var(--bc-esp-3);
+  align-items: flex-start;
+  min-height: var(--bc-tap-comodo);
+  padding: var(--bc-esp-3);
+  border: 1px solid var(--bc-gris-texto-2);
+  border-radius: var(--bc-radio-card);
+  cursor: pointer;
+}
+.lj-casilla input {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  margin: 0;
+  accent-color: var(--bc-carbon);
+}

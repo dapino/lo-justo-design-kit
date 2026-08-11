@@ -1,0 +1,69 @@
+{
+  "name": "lo-justo-design-kit",
+  "version": "0.1.0",
+  "description": "Sistema de diseño para banca de baja densidad: tokens, componentes CSS y exportación a Figma. Con verificación de contraste que rompe el build. Ejercicio de diseño, no afiliado a ninguna entidad.",
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "figma",
+    "tokens-studio",
+    "accessibility",
+    "wcag",
+    "a11y",
+    "css",
+    "banking",
+    "espanol"
+  ],
+  "license": "MIT",
+  "author": "Daniel Pino",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dapino/lo-justo-design-kit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dapino/lo-justo-design-kit/issues"
+  },
+  "homepage": "https://github.com/dapino/lo-justo-design-kit#readme",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/tokens.cjs",
+  "module": "./dist/tokens.mjs",
+  "types": "./dist/tokens.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.mjs",
+      "require": "./dist/tokens.cjs"
+    },
+    "./css": "./dist/lo-justo.css",
+    "./css/min": "./dist/lo-justo.min.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./componentes.css": "./dist/componentes.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./w3c": "./dist/tokens.w3c.json",
+    "./figma": "./dist/tokens.figma.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "scripts",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "verificar": "node scripts/verificar-contraste.mjs",
+    "construir": "npm run verificar && node scripts/construir.mjs",
+    "prepublishOnly": "npm run construir",
+    "test": "npm run verificar"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
